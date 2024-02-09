@@ -12,7 +12,7 @@ template = """Question: {question}
 
 '''
 
-question="What did the president say about Ketanji Brown Jackson"
+question="what Zelenskyy said to EU pariliment"
 vector_db_utils.load_docuement_to_db("resources/state_of_the_union.txt")
 search_results=vector_db_utils.query_vector_db(question)
 
@@ -20,15 +20,16 @@ template = """Answer the question based on the context below. If the
 question cannot be answered using the information provided answer
 with "I don't know".
 
-Context: {search_results}
+Context: {context}
 
 Question: {question}
 
 Answer: """
 
-prompt = PromptTemplate(template=template,input_variables=["question"])
+prompt = PromptTemplate(template=template,input_variables=["context","question"])
 
 llm = CustomLLM()
-llm_chain = LLMChain(prompt=prompt, llm=llm)
 
-print(llm_chain.invoke(search_results[0],question))
+llm_chain = LLMChain(prompt=prompt, llm=llm)
+response=llm_chain.invoke({"context":search_results,"question":question})
+print(f"Question:{response['question']} {response['text']}")
