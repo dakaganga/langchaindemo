@@ -20,7 +20,5 @@ class CustomEmbedder(EmbeddingFunction):
         return self(texts)
     
     def embed_query(self, text):
-        print("retrrieving embed query---------------------")
-        docs=self.embed_documents([text])[0]
-        #print(docs)
-        return docs
+        return self.embed_documents([text])[0]
+        
