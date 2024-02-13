@@ -33,3 +33,6 @@ def query_vector_db(query):
     # print results
     #print(docs)
     return docs[0].page_content
+def as_retriever():
+    db3 = Chroma(persist_directory="./chroma_db", embedding_function=embedding_function)
+    return db3.as_retriever(search_kwargs={"k": 1})
