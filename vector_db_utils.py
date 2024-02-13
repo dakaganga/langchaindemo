@@ -31,7 +31,7 @@ def query_vector_db(query):
     docs = db3.similarity_search(query,)
 
     # print results
-    #print(docs)
+    print(docs)
     return docs[0].page_content
 def as_retriever():
     db3 = Chroma(persist_directory="./chroma_db", embedding_function=embedding_function)
