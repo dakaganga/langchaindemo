@@ -19,8 +19,7 @@ class CustomLLM(LLM):
             **kwargs: Any,
         ) -> str:
             api_url = 'https://z8dvl7fzhxxcybd8.eu-west-1.aws.endpoints.huggingface.cloud/'
-            #api_url ='https://api-inference.huggingface.co/models/HuggingFaceH4/zephyr-7b-beta'
-            API_TOKEN= os.environ.get("API_TOKEN")
+            API_TOKEN=os.environ.get("API_TOKEN") #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
             #print(API_TOKEN)
             payload = {
                 "inputs": prompt,
